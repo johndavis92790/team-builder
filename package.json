@@ -1,0 +1,26 @@
+{
+  "name": "team-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johndavis92790/team-builder.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johndavis92790/team-builder/issues"
+  },
+  "homepage": "https://github.com/johndavis92790/team-builder#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.4.7"
+  }
+}
