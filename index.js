@@ -4,6 +4,9 @@ const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
 const Manager = require('./lib/Manager.js');
 
+const { generatePage } = require('./src/generatePage');
+const { writeFile } = require('./utils/generate-file');
+
 var employees = [];
 
 const promptUser = (type) => {
@@ -77,7 +80,7 @@ const promptAnother = employeeData => {
           .then(promptIntern)
       }
     } else {
-      return employees;
+      promptHtml(employees);
     }
   });
 }
@@ -185,13 +188,33 @@ const promptManager = employeeData =>{
   .then(promptAnother);
 }
 
+const promptHtml = employees => {
 
-
-promptUser('manager')
-  .then(promptManager)
+  return inquirer.prompt(
+    {
+      type: 'confirm',
+      name: 'confirmHtml',
+      message: 'Would you like to generate the html?',
+      default: false
+    }
+  )
   .then(employees => {
-    
+    return generatePage(employees);
   })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .then(writeFileResponse => {
+    console.log(writeFileResponse);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+}
+
+promptUser('manager').then(promptManager);
+
+
   
 
 

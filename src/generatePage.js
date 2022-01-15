@@ -1,7 +1,7 @@
-function generateManager(employees) {
+function generateManager(templateData) {
+  var currentManager = templateData.managers;
   return `
-  ${employees
-    .filter(({ managers }) => managers)
+  ${currentManager
     .map(({ name, id, email, officeNumber }) => {
       return `
       <div class="card m-2 shadow mb-5 bg-body rounded" style="width: 250px">
@@ -20,19 +20,16 @@ function generateManager(employees) {
     .join('')}`
 };
 
-function engineerLoop(data) {
-  for (let i = 0; i < data.length; i++) {
-
-    var engineer = generateEngineer(data[i]);
-    
+function generateEngineer(templateData) {
+  if (!templateData.engineers) {
+    return '';
   }
-}
-
-function generateEngineer(employees) {
-  
-  return `
-    ${employees
-      .filter(({ engineers }) => engineers)
+  console.log(templateData);
+  // for (let i = 0; i < templateData.engineers.length; i++) {
+    var currentEngineer = templateData.engineers;
+    // console.log(currentEngineer);
+    return `
+    ${currentEngineer
       .map(({ name, id, email, github }) => {
         return `
         <div class="card m-2 shadow mb-5 bg-body rounded" style="width: 250px">
@@ -49,51 +46,48 @@ function generateEngineer(employees) {
       `;
     })
     .join('')}`
+  // }
 }
 
-function internLoop(data) {
-  for (let i = 0; i < data.length; i++) {
-
-    var intern = generateIntern(data[i]);
-    
-  }
-}
-
-function gernerateIntern(employees) {
-  return `
-  ${EmployeeArr
-    .filter(({ intern }) => intern)
-    .map(({ name, id, email, school }) => {
-      return `
-      <div class="card m-2 shadow mb-5 bg-body rounded" style="width: 250px">
-        <div class="card-header bg-primary">
-          <h5 class="card-title text-white">${name}</h5>
-          <p class="card-text text-white">Manager</p>
+function gernerateIntern(templateData) {
+  // for (let i = 0; i < templateData.interns.length; i++) {
+    if (!templateData.interns) {
+      return '';
+    }
+    var currentIntern = templateData.interns;
+    // console.log(currentIntern);
+    return `
+    ${currentIntern
+      .map(({ name, id, email, school }) => {
+        return `
+        <div class="card m-2 shadow mb-5 bg-body rounded" style="width: 250px">
+          <div class="card-header bg-primary">
+            <h5 class="card-title text-white">${name}</h5>
+            <p class="card-text text-white">Manager</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">ID: ${id}</li>
+            <li class="list-group-item">Email: <span><a href="mailto:${email}" class="card-link">${email}</a></span></li>
+            <li class="list-group-item">School: ${school}</li>
+          </ul>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">ID: ${id}</li>
-          <li class="list-group-item">Email: <span><a href="mailto:${email}" class="card-link">${email}</a></span></li>
-          <li class="list-group-item">School: ${school}</li>
-        </ul>
-      </div>
-    `;
-    })
-    .join('')}`
+      `;
+      })
+      .join('')}`
+    // }
 }
-const generateCards = EmployeeArr => {
+const generateCards = templateData => {
   return `
     <div class="d-flex flex-wrap m-3" style="justify-content: center">
-      ${generateManager(EmployeeArr)}
+      ${generateManager(templateData)}
+      ${generateEngineer(templateData)}
+      ${gernerateIntern(templateData)}
       
     </div>
   `;
 };
 
-// export function to generate entire page
-module.exports = templateData => {
-  // destructure page data by section
-  const { EmployeeArr } = templateData;
-
+function generatePage (templateData) {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -117,3 +111,5 @@ module.exports = templateData => {
   </html>
   `;
 };
+
+module.exports = { generatePage };
