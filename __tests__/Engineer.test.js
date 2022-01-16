@@ -1,13 +1,12 @@
 const Engineer = require('../lib/Engineer.js');
-const Employee = require('../lib/Employee.js');
 
 test('creates an engineer array', () => {
-  const test = new Engineer('John Davis', '1234', 'test@gmail.com', 'Engineer', 'test');
+  const test = new Engineer('John Davis', '1234', 'test@gmail.com', 'Github');
 
   expect(test.name).toBe('John Davis');
-  expect(test.type).toBe('Engineer');
+  expect(test.id).toBe('1234');
   expect(test.email).toBe('test@gmail.com')
-  expect(test.github).toBe('test');
+  expect(test.github).toBe('Github');
   console.log(test);
   
 });

@@ -1,3 +1,5 @@
+const { writeFile } = require('../utils/generate-file');
+
 function generateManager(templateData) {
   var currentManager = templateData.managers;
   return `
@@ -24,10 +26,8 @@ function generateEngineer(templateData) {
   if (!templateData.engineers) {
     return '';
   }
-  console.log(templateData);
   // for (let i = 0; i < templateData.engineers.length; i++) {
     var currentEngineer = templateData.engineers;
-    // console.log(currentEngineer);
     return `
     ${currentEngineer
       .map(({ name, id, email, github }) => {
@@ -35,7 +35,7 @@ function generateEngineer(templateData) {
         <div class="card m-2 shadow mb-5 bg-body rounded" style="width: 250px">
           <div class="card-header bg-primary">
             <h5 class="card-title text-white">${name}</h5>
-            <p class="card-text text-white">Manager</p>
+            <p class="card-text text-white">Engineer</p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
@@ -49,13 +49,12 @@ function generateEngineer(templateData) {
   // }
 }
 
-function gernerateIntern(templateData) {
+function generateIntern(templateData) {
   // for (let i = 0; i < templateData.interns.length; i++) {
     if (!templateData.interns) {
       return '';
     }
     var currentIntern = templateData.interns;
-    // console.log(currentIntern);
     return `
     ${currentIntern
       .map(({ name, id, email, school }) => {
@@ -63,7 +62,7 @@ function gernerateIntern(templateData) {
         <div class="card m-2 shadow mb-5 bg-body rounded" style="width: 250px">
           <div class="card-header bg-primary">
             <h5 class="card-title text-white">${name}</h5>
-            <p class="card-text text-white">Manager</p>
+            <p class="card-text text-white">Intern</p>
           </div>
           <ul class="list-group list-group-flush">
             <li class="list-group-item">ID: ${id}</li>
@@ -81,7 +80,7 @@ const generateCards = templateData => {
     <div class="d-flex flex-wrap m-3" style="justify-content: center">
       ${generateManager(templateData)}
       ${generateEngineer(templateData)}
-      ${gernerateIntern(templateData)}
+      ${generateIntern(templateData)}
       
     </div>
   `;
@@ -112,4 +111,8 @@ function generatePage (templateData) {
   `;
 };
 
-module.exports = { generatePage };
+function writeHtml(templateData){
+  writeFile(generatePage(templateData));
+}
+
+module.exports = { writeHtml };
