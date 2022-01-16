@@ -4,7 +4,7 @@
 
 ## Description
 
-This project was one of the hardest that I have worked on in this course.
+This project was one of the hardest that I have worked on in this course. It has taught me so many things though. I have learned how to properly use most of the inquirer package in npm. I learned how to create simple tests and run them. I learned how constructor classes work to help you dynamically create variables. I learned how to use the module exports feature to connect seperate files within your project. I also learned about how to better work with asynchronous functions. 
 
 ## Table of Contents
 
