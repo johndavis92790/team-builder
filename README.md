@@ -37,6 +37,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 You can type 'npm run test' to run all the included tests.
 
+## Walk-Through Videos
+
+[Video Link #1](https://bootcampspot.instructuremedia.com/embed/89eb7520-292b-43b9-93e9-e0e416c9d7f0)
+[Video Link #2](https://bootcampspot.instructuremedia.com/embed/696c27c2-403b-4b41-bf3c-c175016641c7)
+
 ## Questions?
 
 [GitHub Account](https://github.com/johndavis92790/)
